@@ -24,9 +24,8 @@ venv/
 # macOS
 .DS_Store
 
-# Not part of this submission: notes and the earlier group workshop
+# Not part of this submission: notes, screenshots and the workshop dashboard
 METHODOLOGY.md
-DataStreamVisualization_Workshop.ipynb
 docs/
 src/web_ui/
 

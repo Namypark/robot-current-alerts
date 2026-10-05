@@ -68,6 +68,7 @@ The project:
 ```text
 .
 ├── LinearRegression_Alerts.ipynb       # main notebook, saved with the outputs of its last full run
+├── DataStreamVisualization_Workshop.ipynb  # earlier group workshop (Neon + streaming) this builds on
 ├── README.md
 ├── requirements.txt                    # pinned dependencies for pip
 ├── pyproject.toml, uv.lock             # the same dependencies for uv
