@@ -9,9 +9,6 @@ current each joint of an industrial robot normally draws. Their prediction error
 used to discover Alert and Error rules, which are then tested on a synthetic stream of readings
 passed through a cloud PostgreSQL database.
 
-> New to regression? [LINEAR_REGRESSION_EXPLAINED.md](LINEAR_REGRESSION_EXPLAINED.md) walks
-> through the whole project in plain language.
-
 ---
 
 ## Contents
@@ -68,7 +65,6 @@ The project:
 ```text
 .
 ├── LinearRegression_Alerts.ipynb       # main notebook, saved with the outputs of its last full run
-├── LINEAR_REGRESSION_EXPLAINED.md      # plain-language walkthrough
 ├── README.md
 ├── requirements.txt                    # pinned dependencies for pip
 ├── pyproject.toml, uv.lock             # the same dependencies for uv

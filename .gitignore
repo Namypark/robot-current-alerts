@@ -30,5 +30,7 @@ DataStreamVisualization_Workshop.ipynb
 docs/
 src/web_ui/
 
-# Submission PDF is uploaded to the course website, not the repository
+# Personal study notes and the submission PDF (uploaded to the course website)
+LINEAR_REGRESSION_EXPLAINED.md
 submission/
+*.pdf
