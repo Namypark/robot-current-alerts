@@ -89,8 +89,9 @@ The project:
     ├── data_collection/
     │   ├── data_collection_agent.py    # Neon connection and queries
     │   └── streaming_simulator.py      # replays a CSV one reading at a time
-    └── database-service/
-        └── migrate_schema.py           # loads the training CSV into Neon
+    ├── database-service/
+    │   └── migrate_schema.py           # loads the training CSV into Neon
+    └── web_ui/                         # optional live dashboard (Dash) from the workshop
 ```
 
 ## Setup
@@ -153,6 +154,17 @@ relative paths resolve.
 Charts are exported as PNGs with Kaleido, which needs Chrome. If Chrome isn't installed, run
 `uv run python -c "import kaleido; kaleido.get_chrome_sync()"` once. Without Chrome the notebook
 still runs, and the charts stay interactive only.
+
+### 5. Optional: live dashboard
+
+`src/web_ui/` contains a small Dash app, carried over from the data-streaming workshop. It replays
+the stored readings from Neon as a live chart of all eight joints:
+
+```bash
+uv run python src/web_ui/web_ui_interface.py
+```
+
+Then open <http://127.0.0.1:8050/>. Stop it with `Ctrl+C`.
 
 ## How it works
 
@@ -289,6 +301,12 @@ restart. A gap in the data is not treated as evidence of continuous overload.
 **Eight regression lines** (training in blue, calibration in orange):
 
 ![Regression lines](results/plots/regression_lines.png)
+
+**The chosen rules on the historical data.** The dashed and dotted lines are the Alert and Error
+boundaries; the only two events in 22.5 hours (both Alerts on Axis 6) are marked with their
+durations:
+
+![Historical events](results/plots/historical_events.png)
 
 **Residual box plots** (all axes on one scale):
 

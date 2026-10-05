@@ -24,10 +24,9 @@ venv/
 # macOS
 .DS_Store
 
-# Not part of this submission: notes, screenshots and the workshop dashboard
+# Not part of this submission: notes and screenshots
 METHODOLOGY.md
 docs/
-src/web_ui/
 
 # Personal study notes and the submission PDF (uploaded to the course website)
 LINEAR_REGRESSION_EXPLAINED.md
