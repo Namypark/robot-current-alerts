@@ -1,8 +1,11 @@
 # Robot Current Monitoring with Linear Regression
 
-**CSCN8010 — Foundations of Machine Learning Frameworks**
-**Author:** Nnamdi Ikengah · Student ID 9085175
-**Repository:** <https://github.com/Namypark/robot-current-alerts>
+| | |
+|---|---|
+| **Course** | CSCN8010 — Foundations of Machine Learning Frameworks |
+| **Author** | Nnamdi Ikengah |
+| **Student ID** | 9085175 |
+| **Repository** | <https://github.com/Namypark/robot-current-alerts> |
 
 A predictive-maintenance project. Eight linear regression models learn how much electrical
 current each joint of an industrial robot normally draws. Their prediction errors (residuals) are
@@ -50,15 +53,15 @@ The project:
 
 ## Results at a glance
 
-| | |
-|---|---|
-| Alert rule | current ≥ **MinC** amps above the line for ≥ **5 s** continuously |
-| Error rule | current ≥ **MaxC** amps above the line for ≥ **5 s** continuously |
-| MinC | training 95th percentile of residuals, per axis |
-| MaxC | training 99th percentile (at least MinC + 1 SD), per axis |
-| Healthy historical data | 2 Alerts in 18 h of training, 0 in calibration, 0 Errors |
-| Synthetic stream | 4,840 readings through Neon; **48 / 48** test scenarios correct |
-| Events logged | 40 (24 Alerts, 16 Errors), all from injected faults; none from healthy data |
+|                         |                                                                             |
+| ----------------------- | --------------------------------------------------------------------------- |
+| Alert rule              | current ≥ **MinC** amps above the line for ≥ **5 s** continuously           |
+| Error rule              | current ≥ **MaxC** amps above the line for ≥ **5 s** continuously           |
+| MinC                    | training 95th percentile of residuals, per axis                             |
+| MaxC                    | training 99th percentile (at least MinC + 1 SD), per axis                   |
+| Healthy historical data | 2 Alerts in 18 h of training, 0 in calibration, 0 Errors                    |
+| Synthetic stream        | 4,840 readings through Neon; **48 / 48** test scenarios correct             |
+| Events logged           | 40 (24 Alerts, 16 Errors), all from injected faults; none from healthy data |
 
 ## Repository layout
 
@@ -161,16 +164,16 @@ working reading would then look "too high". The lines are therefore fitted on **
 only**. Idle readings still pass through the detector, but their residual is negative, so they can
 never trigger an alert.
 
-| Axis | Intercept (A) | Slope (A per hour) | R² |
-|---|---|---|---|
-| 1 | 2.007 | +0.0054 | 0.0001 |
-| 2 | 10.031 | +0.0020 | 0.0000 |
-| 3 | 7.833 | −0.0302 | 0.0005 |
-| 4 | 1.672 | +0.0076 | 0.0002 |
-| 5 | 2.700 | −0.0040 | 0.0000 |
-| 6 | 1.655 | +0.0003 | 0.0000 |
-| 7 | 2.363 | +0.0080 | 0.0001 |
-| 8 | 0.274 | +0.0013 | 0.0001 |
+| Axis | Intercept (A) | Slope (A per hour) | R²     |
+| ---- | ------------- | ------------------ | ------ |
+| 1    | 2.007         | +0.0054            | 0.0001 |
+| 2    | 10.031        | +0.0020            | 0.0000 |
+| 3    | 7.833         | −0.0302            | 0.0005 |
+| 4    | 1.672         | +0.0076            | 0.0002 |
+| 5    | 2.700         | −0.0040            | 0.0000 |
+| 6    | 1.655         | +0.0003            | 0.0000 |
+| 7    | 2.363         | +0.0080            | 0.0001 |
+| 8    | 0.274         | +0.0013            | 0.0001 |
 
 The slopes are almost zero and R² is about zero. Over 22 hours a healthy robot's average load does
 not trend, so each line settles at that joint's typical working current. This is evidence that
@@ -197,14 +200,14 @@ repeatable:
   readings. This keeps the 2-second rhythm, the idle periods and the way the joints move together.
 - **Injected scenarios** for every axis, each with a known correct answer:
 
-| Scenario | What is injected | Expected result |
-|---|---|---|
-| `brief_spike` | Error-level current for 4 s | nothing (shorter than T) |
-| `sustained_alert` | between MinC and MaxC for 8 s | Alert |
-| `sustained_error` | above MaxC for 8 s | Alert + Error |
-| `interrupted_run` | above MaxC, broken by one normal reading | nothing (timer resets) |
-| `recording_gap` | above MaxC, split by a gap in the data | nothing (timer resets) |
-| `gradual_overload` | load climbs for 60 s, then holds | Alert, then Error |
+| Scenario           | What is injected                         | Expected result          |
+| ------------------ | ---------------------------------------- | ------------------------ |
+| `brief_spike`      | Error-level current for 4 s              | nothing (shorter than T) |
+| `sustained_alert`  | between MinC and MaxC for 8 s            | Alert                    |
+| `sustained_error`  | above MaxC for 8 s                       | Alert + Error            |
+| `interrupted_run`  | above MaxC, broken by one normal reading | nothing (timer resets)   |
+| `recording_gap`    | above MaxC, split by a gap in the data   | nothing (timer resets)   |
+| `gradual_overload` | load climbs for 60 s, then holds         | Alert, then Error        |
 
 **Normalized and standardized against the training data:** the synthetic data never gets its own
 scaler. It is min-max scaled with the training minimum and maximum, and turned into z-scores with
@@ -237,35 +240,35 @@ single reading** and none lasts four readings.
 calibration period, summed over all axes, for each threshold level and required duration:
 
 | Level / T | 2 s | 4 s | **5 s** | 6 s | 10 s |
-|---|---|---|---|---|---|
-| p80 | 156 | 27 | 27 | 11 | 0 |
-| p85 | 82 | 5 | 5 | 2 | 0 |
-| p90 | 33 | 1 | 1 | 0 | 0 |
-| **p95** | 3 | 0 | **0** | 0 | 0 |
-| p99 | 0 | 0 | 0 | 0 | 0 |
+| --------- | --- | --- | ------- | --- | ---- |
+| p80       | 156 | 27  | 27      | 11  | 0    |
+| p85       | 82  | 5   | 5       | 2   | 0    |
+| p90       | 33  | 1   | 1       | 0   | 0    |
+| **p95**   | 3   | 0   | **0**   | 0   | 0    |
+| p99       | 0   | 0   | 0       | 0   | 0    |
 
 **3. The choice:**
 
-| Setting | Value | Why |
-|---|---|---|
-| **MinC** | training p95, per axis | The lowest level at which healthy data produces **no** sustained run at T = 5 s. |
-| **MaxC** | training p99, at least MinC + 1 SD | Only 1 in 100 working readings gets this high, even for an instant. The floor keeps an Error clearly worse than an Alert. |
-| **T** | 5 seconds | At about 2 s per reading this needs four high readings in a row, more than any healthy spike lasts. It still reacts within seconds. |
+| Setting  | Value                              | Why                                                                                                                                 |
+| -------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **MinC** | training p95, per axis             | The lowest level at which healthy data produces **no** sustained run at T = 5 s.                                                    |
+| **MaxC** | training p99, at least MinC + 1 SD | Only 1 in 100 working readings gets this high, even for an instant. The floor keeps an Error clearly worse than an Alert.           |
+| **T**    | 5 seconds                          | At about 2 s per reading this needs four high readings in a row, more than any healthy spike lasts. It still reacts within seconds. |
 
 The MaxC floor matters only for **Axis 7**. That joint tops out at 8.11 A, so its 95th and 99th
 percentiles are just 0.07 A apart. With the floor, an Axis 7 Error means drawing more current than
 the joint has ever drawn.
 
 | Axis | MinC (A) | MaxC (A) | T (s) |
-|---|---|---|---|
-| 1 | 6.64 | 14.34 | 5 |
-| 2 | 16.04 | 31.93 | 5 |
-| 3 | 13.55 | 22.21 | 5 |
-| 4 | 4.68 | 10.17 | 5 |
-| 5 | 5.21 | 10.79 | 5 |
-| 6 | 5.60 | 12.36 | 5 |
-| 7 | 5.65 | 8.70 | 5 |
-| 8 | 1.03 | 3.67 | 5 |
+| ---- | -------- | -------- | ----- |
+| 1    | 6.64     | 14.34    | 5     |
+| 2    | 16.04    | 31.93    | 5     |
+| 3    | 13.55    | 22.21    | 5     |
+| 4    | 4.68     | 10.17    | 5     |
+| 5    | 5.21     | 10.79    | 5     |
+| 6    | 5.60     | 12.36    | 5     |
+| 7    | 5.65     | 8.70     | 5     |
+| 8    | 1.03     | 3.67     | 5     |
 
 If two readings are more than 5.7 s apart (three times the normal sampling gap), both timers
 restart. A gap in the data is not treated as evidence of continuous overload.
@@ -307,7 +310,7 @@ restart. A gap in the data is not treated as evidence of continuous overload.
 ![Axis 2 events](results/plots/axis_2_controlled_events.png)
 
 All eight per-axis charts, the residual histograms and residuals-over-time are in
-[`results/plots/`](results/plots/).
+`[results/plots/](results/plots/)`.
 
 ## Limitations
 
